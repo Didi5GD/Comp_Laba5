@@ -21,6 +21,8 @@ namespace Comp_Laba1
         private LineNumberManager lineNumberManager;
         List<ScanTokin> result_lecs;
         List<SyntaxError> result_parser;
+        private string globalAstJson;
+        private SemanticAnalysisResult semanticResult;
 
 
         public Form1()
@@ -657,13 +659,38 @@ namespace Comp_Laba1
                 return;
             }
             result_lecs = scanner.Analyze(inputText);
-            ShowTokensTable();
-            dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             Parser parser = new Parser(result_lecs);
             parser.ParseStart();
             result_parser = parser.GetErrors();
 
+            SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer(result_lecs);
+            semanticResult = semanticAnalyzer.Analyze(parser);
+
+            // Показываем Form3 с результатами
+            Form3 astForm = new Form3();
+            astForm.DisplayResults(semanticResult.AstJson, semanticResult.Errors, semanticResult.ErrorCount);
+            astForm.ShowDialog(this);
+
+            // Показываем всплывающее окно
+            if (semanticResult.HasErrors)
+            {
+                MessageBox.Show($"Найдено семантических ошибок: {semanticResult.ErrorCount}",
+                    "Результат анализа",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Семантических ошибок не найдено",
+                    "Результат анализа",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+
+            ShowSemanticErrorsTable();
+            dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
 
@@ -806,10 +833,39 @@ namespace Comp_Laba1
         }
 
 
-        void ShowSyntaxTable()
+            private void ShowSemanticErrorsTable()
         {
-            
+            if (semanticResult == null || semanticResult.Errors == null || semanticResult.Errors.Count == 0)
+            {
+                MessageBox.Show("Нет семантических ошибок. Сначала выполните анализ.",
+                    "Нет данных", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("Fragment", "Фрагмент");
+            dataGridView1.Columns.Add("Place", "Местоположение");
+            dataGridView1.Columns.Add("Description", "Описание ошибки");
+            dataGridView1.Columns["Fragment"].Width = 200;
+            dataGridView1.Columns["Place"].Width = 120;
+            dataGridView1.Columns["Description"].Width = 800;
+
+            foreach (var error in semanticResult.Errors)
+            {
+                dataGridView1.Rows.Add(
+                    error.Fragment,
+                    error.Position,
+                    error.ErrorMessage
+                );
+            }
+
+            семантикаToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            парсерToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            лексемыToolStripMenuItem.BackColor = System.Drawing.Color.LightBlue;
+            dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
+        
 
         private void ClearHighlight()
         {
@@ -831,6 +887,15 @@ namespace Comp_Laba1
 
         private void семантикаToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ShowSemanticErrorsTable();
+            ClearHighlight();
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+            
 
         }
     }
