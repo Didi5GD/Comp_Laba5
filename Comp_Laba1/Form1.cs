@@ -767,6 +767,7 @@ namespace Comp_Laba1
 
             лексемыToolStripMenuItem.BackColor = System.Drawing.Color.LightBlue;
             парсерToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            семантикаToolStripMenuItem.BackColor= System.Drawing.Color.LightCoral;
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
@@ -800,7 +801,14 @@ namespace Comp_Laba1
 
             парсерToolStripMenuItem.BackColor = System.Drawing.Color.LightBlue;
             лексемыToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            семантикаToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        }
+
+
+        void ShowSyntaxTable()
+        {
+            
         }
 
         private void ClearHighlight()
@@ -819,6 +827,11 @@ namespace Comp_Laba1
             {
                 System.Diagnostics.Debug.WriteLine($"Ошибка сброса подсветки: {ex.Message}");
             }
+        }
+
+        private void семантикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
