@@ -87,6 +87,7 @@ namespace Comp_Laba1
             this.menuStrip4 = new System.Windows.Forms.MenuStrip();
             this.лексемыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.парсерToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.семантикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -357,42 +358,49 @@ namespace Comp_Laba1
             this.постановкаЗадачиToolStripMenuItem.Name = "постановкаЗадачиToolStripMenuItem";
             this.постановкаЗадачиToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.постановкаЗадачиToolStripMenuItem.Text = "Постановка задачи";
+            this.постановкаЗадачиToolStripMenuItem.Click += new System.EventHandler(this.постановкаЗадачиToolStripMenuItem_Click);
             // 
             // граматикаToolStripMenuItem
             // 
             this.граматикаToolStripMenuItem.Name = "граматикаToolStripMenuItem";
             this.граматикаToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.граматикаToolStripMenuItem.Text = "Граматика";
+            this.граматикаToolStripMenuItem.Click += new System.EventHandler(this.граматикаToolStripMenuItem_Click);
             // 
             // классификацияToolStripMenuItem
             // 
             this.классификацияToolStripMenuItem.Name = "классификацияToolStripMenuItem";
             this.классификацияToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.классификацияToolStripMenuItem.Text = "Классификация";
+            this.классификацияToolStripMenuItem.Click += new System.EventHandler(this.классификацияToolStripMenuItem_Click);
             // 
             // методАнализаToolStripMenuItem
             // 
             this.методАнализаToolStripMenuItem.Name = "методАнализаToolStripMenuItem";
             this.методАнализаToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.методАнализаToolStripMenuItem.Text = "Метод анализа";
+            this.методАнализаToolStripMenuItem.Click += new System.EventHandler(this.методАнализаToolStripMenuItem_Click);
             // 
             // тестовыйПримерToolStripMenuItem
             // 
             this.тестовыйПримерToolStripMenuItem.Name = "тестовыйПримерToolStripMenuItem";
             this.тестовыйПримерToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.тестовыйПримерToolStripMenuItem.Text = "Тестовый пример";
+            this.тестовыйПримерToolStripMenuItem.Click += new System.EventHandler(this.тестовыйПримерToolStripMenuItem_Click);
             // 
             // списокЛитературыToolStripMenuItem
             // 
             this.списокЛитературыToolStripMenuItem.Name = "списокЛитературыToolStripMenuItem";
             this.списокЛитературыToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.списокЛитературыToolStripMenuItem.Text = "Список литературы";
+            this.списокЛитературыToolStripMenuItem.Click += new System.EventHandler(this.списокЛитературыToolStripMenuItem_Click);
             // 
             // исходныйКодПрограммыToolStripMenuItem
             // 
             this.исходныйКодПрограммыToolStripMenuItem.Name = "исходныйКодПрограммыToolStripMenuItem";
             this.исходныйКодПрограммыToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.исходныйКодПрограммыToolStripMenuItem.Text = "Исходный код программы";
+            this.исходныйКодПрограммыToolStripMenuItem.Click += new System.EventHandler(this.исходныйКодПрограммыToolStripMenuItem_Click);
             // 
             // размерТекстаToolStripMenuItem
             // 
@@ -478,12 +486,12 @@ namespace Comp_Laba1
             this.Lecsema,
             this.Place});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 48);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 46);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(952, 193);
+            this.dataGridView1.Size = new System.Drawing.Size(952, 195);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -535,7 +543,7 @@ namespace Comp_Laba1
             // 
             this.file1ToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.file1ToolStripMenuItem.Name = "file1ToolStripMenuItem";
-            this.file1ToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
+            this.file1ToolStripMenuItem.Size = new System.Drawing.Size(59, 23);
             this.file1ToolStripMenuItem.Text = "File1";
             this.file1ToolStripMenuItem.Click += new System.EventHandler(this.file1ToolStripMenuItem_Click);
             // 
@@ -571,26 +579,34 @@ namespace Comp_Laba1
             this.menuStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.лексемыToolStripMenuItem,
-            this.парсерToolStripMenuItem});
+            this.парсерToolStripMenuItem,
+            this.семантикаToolStripMenuItem});
             this.menuStrip4.Location = new System.Drawing.Point(3, 18);
             this.menuStrip4.Name = "menuStrip4";
-            this.menuStrip4.Size = new System.Drawing.Size(952, 30);
+            this.menuStrip4.Size = new System.Drawing.Size(952, 28);
             this.menuStrip4.TabIndex = 5;
             this.menuStrip4.Text = "menuStrip4";
             // 
             // лексемыToolStripMenuItem
             // 
             this.лексемыToolStripMenuItem.Name = "лексемыToolStripMenuItem";
-            this.лексемыToolStripMenuItem.Size = new System.Drawing.Size(85, 26);
+            this.лексемыToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.лексемыToolStripMenuItem.Text = "Лексемы";
             this.лексемыToolStripMenuItem.Click += new System.EventHandler(this.лексемыToolStripMenuItem_Click);
             // 
             // парсерToolStripMenuItem
             // 
             this.парсерToolStripMenuItem.Name = "парсерToolStripMenuItem";
-            this.парсерToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
+            this.парсерToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.парсерToolStripMenuItem.Text = "Парсер";
             this.парсерToolStripMenuItem.Click += new System.EventHandler(this.парсерToolStripMenuItem_Click);
+            // 
+            // семантикаToolStripMenuItem
+            // 
+            this.семантикаToolStripMenuItem.Name = "семантикаToolStripMenuItem";
+            this.семантикаToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.семантикаToolStripMenuItem.Text = "Семантика";
+            this.семантикаToolStripMenuItem.Click += new System.EventHandler(this.семантикаToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -682,6 +698,7 @@ namespace Comp_Laba1
         private MenuStrip menuStrip4;
         private ToolStripMenuItem лексемыToolStripMenuItem;
         private ToolStripMenuItem парсерToolStripMenuItem;
+        private ToolStripMenuItem семантикаToolStripMenuItem;
     }
 }
 

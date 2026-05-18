@@ -1,4 +1,2 @@
-﻿if ($a > $b)
-{$max = $aа;}
-else
-{$max = $aа;};
+﻿if ( $a>$b ){$max = $aa;}
+else {$max = $t;};

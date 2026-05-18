@@ -21,6 +21,7 @@ namespace Comp_Laba1
         private LineNumberManager lineNumberManager;
         List<ScanToken> result_lecs;
         List<SyntaxError> result_parser;
+        SemanticResult semanticResult;
 
 
         public Form1()
@@ -669,10 +670,34 @@ namespace Comp_Laba1
 
             Parser parser = new Parser(result_lecs);
             result_parser =parser.Parse();
-            ShowErrorsTable();
-            
+            //ShowErrorsTable();
+
+            AstBuilder astBuilder = new AstBuilder(result_lecs);
+            semanticResult = astBuilder.Build();
+            ShowAstWindow(semanticResult.AstText);
+            ShowSemaTable();
         }
 
+        public void ShowAstWindow(string astText)
+        {
+            System.Windows.Forms.Form popup = new System.Windows.Forms.Form();
+            popup.Text = "Абстрактное синтаксическое дерево (AST)";
+            popup.Width = 600;
+            popup.Height = 500;
+            popup.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+
+            System.Windows.Forms.TextBox txt = new System.Windows.Forms.TextBox();
+            txt.Multiline = true;
+            txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            txt.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            txt.Font = new System.Drawing.Font("Consolas", 11F);
+            txt.Text = astText;
+            txt.ReadOnly = true;
+            txt.SelectionLength = 0;
+
+            popup.Controls.Add(txt);
+            popup.ShowDialog();
+        }
 
         public void DisplayTokens(List<ScanToken> tokens)
         {
@@ -777,6 +802,7 @@ namespace Comp_Laba1
 
             лексемыToolStripMenuItem.BackColor = System.Drawing.Color.LightBlue;
             парсерToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            семантикаToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
@@ -811,7 +837,40 @@ namespace Comp_Laba1
 
             парсерToolStripMenuItem.BackColor = System.Drawing.Color.LightBlue;
             лексемыToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+            семантикаToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
+        }
 
+        private void ShowSemaTable()
+        {
+
+            if (semanticResult.ErrorCount ==0) 
+            {
+                dataGridView1.Rows.Clear();
+                dataGridView1.Columns.Clear();
+                MessageBox.Show("Ошибок нет.",
+                        "Нет данных", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }   
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("Type", "Описание ошибки");
+            dataGridView1.Columns.Add("Fragment", "Неверный фрагмент");
+            dataGridView1.Columns.Add("Description", "Описание ошибки");
+            dataGridView1.Columns["Type"].Width = 200;
+            dataGridView1.Columns["Fragment"].Width = 200;
+            dataGridView1.Columns["Description"].Width = 200;
+            foreach (var error in semanticResult.Errors)
+            {
+                dataGridView1.Rows.Add(
+                    error.Type,
+                    error.Fragment,
+                    error.Description
+                );
+            }
+            парсерToolStripMenuItem.BackColor = System.Drawing.Color.LightBlue;
+            лексемыToolStripMenuItem.BackColor = System.Drawing.Color.LightBlue;
+            семантикаToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral;
         }
 
         private void ClearHighlight()
@@ -835,6 +894,54 @@ namespace Comp_Laba1
         private void справкаToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void постановкаЗадачиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://docs.google.com/document/d/1Rzmagq5oPo1kBg_uRBE7TA7xVFDxVzWDO_y2QE76Ows/edit?tab=t.69zdg59479kx";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void граматикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://docs.google.com/document/d/1Rzmagq5oPo1kBg_uRBE7TA7xVFDxVzWDO_y2QE76Ows/edit?tab=t.1txr5vskdeqp";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void классификацияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://docs.google.com/document/d/1Rzmagq5oPo1kBg_uRBE7TA7xVFDxVzWDO_y2QE76Ows/edit?tab=t.h2mjo8ryi6d4";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void методАнализаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://docs.google.com/document/d/1Rzmagq5oPo1kBg_uRBE7TA7xVFDxVzWDO_y2QE76Ows/edit?tab=t.uk6bnvyyxolx";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void тестовыйПримерToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://docs.google.com/document/d/1Rzmagq5oPo1kBg_uRBE7TA7xVFDxVzWDO_y2QE76Ows/edit?tab=t.kdowgfjlgr5e";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void списокЛитературыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://docs.google.com/document/d/1Rzmagq5oPo1kBg_uRBE7TA7xVFDxVzWDO_y2QE76Ows/edit?tab=t.tuhqu7ups3hg";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void исходныйКодПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://docs.google.com/document/d/1Rzmagq5oPo1kBg_uRBE7TA7xVFDxVzWDO_y2QE76Ows/edit?tab=t.sia181eg2ep3";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void семантикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowSemaTable();
+            ClearHighlight();
         }
     }
 }

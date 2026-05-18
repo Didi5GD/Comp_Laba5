@@ -1,0 +1,4 @@
+﻿i#f ($a > $b)
+{$max = $aа;
+els%e
+{max = $aа;}

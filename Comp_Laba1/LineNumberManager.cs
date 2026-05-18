@@ -57,10 +57,10 @@ namespace Comp_Laba1
                 isUpdating = true;
 
                 int lineCount = textBox.Lines.Length;
-                if (lineCount == 0) lineCount = 1;
+                if (lineCount == 0) lineCount = 0;
 
                 string numbers = "";
-                for (int i = 1; i <= lineCount; i++)
+                for (int i = 0; i <= lineCount; i++)
                 {
                     numbers += i.ToString() + "\n";
                 }
